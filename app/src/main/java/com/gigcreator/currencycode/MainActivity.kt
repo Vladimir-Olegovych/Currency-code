@@ -62,6 +62,7 @@ private fun MainContent(result: Daily){
             Arrangement.SpaceEvenly
         ) {
             Text(text = "Код", color = Color.White)
+            Text(text = "Номинал", color = Color.White)
             Text(text = "Цена", color = Color.White)
             Text(text = "Знак", color = Color.White)
         }

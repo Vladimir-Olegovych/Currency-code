@@ -24,10 +24,11 @@ fun ItemColum(item: Coin, up: Int, down: Int) {
             .background(CardColor),
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth(0.75f),
+            modifier = Modifier.fillMaxWidth(0.81f),
             Arrangement.SpaceEvenly
         ) {
             Text(text = "${item.charCode}:", color = Color.White)
+            Text(text = "${item.nominal}", color = Color.Yellow)
             Text(text = item.value.toString(), color = if (item.previous > item.value) Color.Red else Color.Green)
         }
 
