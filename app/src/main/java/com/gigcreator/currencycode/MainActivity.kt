@@ -8,8 +8,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -55,30 +58,15 @@ class MainActivity : ComponentActivity() {
 private fun MainContent(result: Daily){
     val up = R.drawable.baseline_arrow_up
     val down = R.drawable.baseline_arrow_down
-    //Menu
-    Column() {
-        Row(
-            modifier = Modifier.fillMaxWidth().background(BackgroundColor),
-            Arrangement.SpaceEvenly
-        ) {
-            Text(text = "Код", color = Color.White)
-            Text(text = "Номинал", color = Color.White)
-            Text(text = "Цена", color = Color.White)
-            Text(text = "Знак", color = Color.White)
-        }
-        //List
-        val list = ArrayList<Coin>()
+    Column(
+        horizontalAlignment = Alignment.Start,
+        modifier = Modifier
+            .background(BackgroundColor)
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+    ) {
         result.stats.forEach { (_, u) ->
-            list.add(u)
-        }
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(BackgroundColor)
-        ) {
-            itemsIndexed(list) { _, item ->
-                ItemColum(item = item, up, down)
-            }
+            ItemColum(item = u, up = up, down = down)
         }
     }
 }
